@@ -2,10 +2,14 @@ import React, { useContext } from 'react'
 import Container from '../../Components/Shared/Container';
 import image from '../../assets/login/login.svg';
 import { FaFacebookF, FaLinkedinIn, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 function SignUp() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
+
   const {createUser, updateUserProfile, signInGoogle} = useContext(AuthContext);
   const handleUser = (event) =>{
     event.preventDefault();
@@ -20,6 +24,7 @@ function SignUp() {
       .then(result=>{
         const user = result.user;
         console.log(user);
+        navigate(from, {replace: true})
       })
       .catch(error=>{
         console.log(error);
@@ -36,6 +41,7 @@ function SignUp() {
     .then(result=>{
       const user = result.user;
       console.log(user);
+      navigate(from, {replace: true})
     })
     .catch(error=>{
       console.log(error);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Container from "../../Shared/Container";
 import { BsArrowRight } from 'react-icons/bs';
+import { Link } from "react-router-dom";
 
 function Service() {
   const [service, setService] = useState([]);
@@ -34,7 +35,7 @@ function Service() {
                 <h4 className="py-3 text-[22px] font-semibold">{item.title}</h4>
                 <div className="flex items-center justify-between">
                   <p className="text-[16px] text-[#FF3811] font-semibold">Price ${item.price}</p>
-                  <BsArrowRight className="text-[#FF3811]" />
+                  <Link to={`/bookings/${item._id}`}><BsArrowRight className="text-[#FF3811]" /></Link>
                 </div>
               </div>
             ))}

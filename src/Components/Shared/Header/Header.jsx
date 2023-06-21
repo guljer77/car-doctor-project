@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Logo from "../../../assets/logo.svg";
-import { BsHandbag } from 'react-icons/bs';
+import { BsHandbag, BsArrowRight } from "react-icons/bs";
+import { AuthContext } from "../../../Provider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const [open, setOpen] = useState(false);
+  const logOutHandle = () => {
+    logOut()
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   return (
     <nav className="bg-white font-inter overflow-hidden shadow-lg max-w-[2520px] mx-auto xl:px-20 md:px-10 sm:px-2 px-4">
       <div className="flex items-center justify-between font-medium">
@@ -68,7 +81,7 @@ const Header = () => {
                 <BsHandbag />
               </Link>
             </li>
-            <li>
+            <li className="pr-5">
               <Link
                 to="/login"
                 className="border-2 inline-block border-b-[#ed563b] px-3 py-2 rounded-md text-[#ed563b] text-[16px]"
@@ -76,6 +89,7 @@ const Header = () => {
                 Appointment
               </Link>
             </li>
+            {user ? <><li><img className="w-[40px] h-[40px] mr-3" src={user?.photoURL} alt="" /></li><li onClick={logOutHandle} className="cursor-pointer">Logout <BsArrowRight className="inline-block" /></li></> : <li><Link className="px-3 py-2 text-white bg-[#ed563b] inline-block rounded-md" to="/login">Login</Link></li>}
           </ul>
         </div>
         {/* mobile-nav */}
@@ -134,6 +148,7 @@ const Header = () => {
                   Appointment
                 </Link>
               </li>
+              {user ? <li onClick={logOutHandle} className="cursor-pointer">Logout</li> : ""}
             </ul>
           </div>
         </ul>
