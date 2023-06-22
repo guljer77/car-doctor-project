@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Bookings from "../Pages/Bookings/Bookings";
 import Details from "../Pages/Details/Details";
+import MyBooking from "../Pages/MyBooking/MyBooking";
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />
+      },
+      {
+        path: '/my-booking',
+        element: <PrivateRoute><MyBooking /></PrivateRoute>
       },
       {
         path: '/login',
@@ -32,6 +37,7 @@ export const router = createBrowserRouter([
       {
         path: '/bookings/:id',
         element: <PrivateRoute><Bookings /></PrivateRoute>,
+        loader: ({params}) => fetch(`https://car-doctor-server-guljer77.vercel.app/services/${params.id}`)
       }
     ]
   }

@@ -6,7 +6,6 @@ import { BsArrowRight } from "react-icons/bs";
 
 function Details() {
   const data = useLoaderData();
-  console.log(data);
   return (
     <div className="font-inter">
       <Container>

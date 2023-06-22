@@ -59,10 +59,10 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="/blog"
+              to="/my-booking"
               className={({ isActive }) => (isActive ? "active" : "notActive")}
             >
-              Blog
+              My Booking
             </NavLink>
           </li>
           <li>
