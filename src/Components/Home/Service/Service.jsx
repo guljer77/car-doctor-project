@@ -11,8 +11,6 @@ function Service() {
       .then(data => setService(data));
   }, []);
 
-  console.log(service);
-
   return (
     <div className="py-10">
       <Container>
@@ -35,7 +33,7 @@ function Service() {
                 <h4 className="py-3 text-[22px] font-semibold">{item.title}</h4>
                 <div className="flex items-center justify-between">
                   <p className="text-[16px] text-[#FF3811] font-semibold">Price ${item.price}</p>
-                  <Link to={`/bookings/${item._id}`}><BsArrowRight className="text-[#FF3811]" /></Link>
+                  <Link to={`/details/${item._id}`}><BsArrowRight className="text-[#FF3811]" /></Link>
                 </div>
               </div>
             ))}
